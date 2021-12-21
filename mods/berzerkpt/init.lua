@@ -244,11 +244,11 @@ function(dtime)
         minetest.add_item({x=43.0,y=0.5,z=3.0}, ItemStack({ -- house chique
 				name = "bows:bow_bronze",
 				count = 1
-			})) --]]
+			})) 
         minetest.add_item({x=47.0,y=0.5,z=1.0}, ItemStack({ -- house chique
 				name = "farming:bread",
 				count = 1
-			}))
+			})) --]]
 
 
 
