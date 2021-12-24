@@ -40,6 +40,7 @@ Minetest game mods used:
  - walls
 
 OBS: Some mods was altered for work with this game.
+This game is made for the Minetest 5.4.1.
 
 This game was made respecting the rules of the 2021 Minetest GAME JAM.
 
