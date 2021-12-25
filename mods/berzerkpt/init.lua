@@ -1,11 +1,5 @@
---[[
-    
---]]
-
---local xmap = 0 -- variavel com a posição do último mapa 
 local moved = 0 -- variável q indica se acabou de teleportar
 local rnddeco = 0 -- variável da redecoração
---local initial_text = "0"
 local score
 
 -- desert_sandstone_brick2
@@ -34,8 +28,6 @@ round_trunks.trunks_overrider(minetest.get_current_modname()..":earthbuild_white
 
 minetest.register_on_respawnplayer(function(player) 
 	local name = player:get_player_name()
-    --minetest.get_player_by_name(player):setpos({x=24.0,y=0.5,z=6.0}) --casa
-    --minetest.get_player_by_name(name):move_to({x=24.0,y=0.5,z=6.0}, continuous=false) --casa
     minetest.get_player_by_name(name):setpos({x=24.0,y=0.5,z=6.0}) --casa
     score = 0
 end)
@@ -43,8 +35,7 @@ end)
 minetest.register_on_dieplayer(function(player) 
 	local name = player:get_player_name()
     minetest.get_player_by_name(name):setpos({x=24.0,y=0.5,z=6.0}) --casa
-    --minetest.get_player_by_name(player):setpos({x=24.0,y=0.5,z=6.0}) --casa
-    minetest.get_player_by_name(name):move_to({x=24.0,y=0.5,z=6.0}) --, continuous=false) --casa
+    minetest.get_player_by_name(name):move_to({x=24.0,y=0.5,z=6.0})
     score = 0
 end)
 
@@ -53,12 +44,6 @@ end)
 
 
 
-
-
--- player texture
---minetest.register_on_joinplayer(function(player)
---    default.player_set_textures(player, {"player.png"})
---end)
 
 
         mobs:spawn({
@@ -110,9 +95,6 @@ minetest.register_on_joinplayer(function(player)
 
 	--local name = player:get_player_name()
 	local name = player:get_player_name()
-	--local p = minetest.get_player_privs(name)
-	--p['fly'] = false
-	--minetest.set_player_privs(name, p)
 
 
 -- posição referencia inicial 0,0,0 do schematics
@@ -120,45 +102,16 @@ minetest.register_on_joinplayer(function(player)
 
     minetest.place_schematic({x=0,y=0,z=0}, minetest.get_modpath("schems").."/templeb.mts", 0, true, true)
 
-    --[[
-    local my_hud = player:hud_add({
-        hud_elem_type = "text",
-        position = {x=0.5,y=0.5},
-        size = {x=-20,y=-20},
-        text = initial_text,
-        alignment = {x=0,y=0},
-        offset = {x=0,y=0},
-    })
---]]
-
     minetest.get_player_by_name(name):setpos({x=24.0,y=0.5,z=6.0}) --casa
-    --local mapatual = 1 -- casa
-
-    --[[local mapa = math.random(3)
-    --if mapa == 1 then --templo
-        minetest.place_schematic({x=xmap,y=0,z=0}, minetest.get_modpath("schems").."/temple1.mts", 0, true, true)
-    --elseif mapa == 2 then --casa
-        minetest.place_schematic({x=xmap,y=0,z=0}, minetest.get_modpath("schems").."/temple2.mts", 0, true, true)
-    --else -- tumba
-        minetest.place_schematic({x=xmap,y=0,z=0}, minetest.get_modpath("schems").."/temple3.mts", 0, true, true) 
-    --end--]]
-
 end)
 
 
 -- mecanica do jogo
 minetest.register_globalstep(
 function(dtime)
-    --local player = minetest.get_player_by_name(name)  
-    --local name = player:get_player_name()
-    --local player = minetest.get_player_by_name(name)
-    --minetest.chat_send_all("Hello World!!!!!")
-    --if player:get_player_name() then
 	for i, player in pairs(minetest.get_connected_players()) do
 		local player_name = player:get_player_name()
         local pos = player:get_pos()
-        --local pos = minetest.get_player_by_name(get_pos())
-        --minetest.chat_send_all("Hello World!")
 
         -- caiu no infinito 
         if pos.y <= -1.0 then
@@ -237,18 +190,6 @@ function(dtime)
 				name = "farming:bread",
 				count = 1
 			}))
-        --[[ minetest.add_item({x=5.0,y=0.5,z=11.0}, ItemStack({ -- temple
-				name = "bows:arrow",
-				count = 5
-			}))
-        minetest.add_item({x=43.0,y=0.5,z=3.0}, ItemStack({ -- house chique
-				name = "bows:bow_bronze",
-				count = 1
-			})) 
-        minetest.add_item({x=47.0,y=0.5,z=1.0}, ItemStack({ -- house chique
-				name = "farming:bread",
-				count = 1
-			})) --]]
 
 
 
@@ -340,102 +281,8 @@ function(dtime)
             end
         end
 
-
-
-
-
-
-        -- guards
---[[        minetest.add_item({x=15.0,y=0.5,z=8.0}, ItemStack({ -- house
-				name = "mobs_npc:guard",
-				count = 1
-			})) --]]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     moved = 0
     end
 end
 )
-
-
-
---disabled_settings = !creative_mode
-
-
-
---[[
-mobs:spawn({
-	name = "mobs_npc:npc",
-	nodes = {"default:brick"},
-	neighbors = {"default:grass_3"},
-	min_light = 10,
-	chance = 10000,
-	active_object_count = 1,
-	min_height = 0,
-	day_toggle = true,
-})
---]]
-
-
-
-
-
-
-
-
---[[
--- bots
-mobs.register_mob(minetest.get_current_modname()..":guard",{
-    type="monster",
-    hp_min=10,
-    hp_max=50,
-    attack_players=true,
-    attack_type="shoot",
-})
-
---[[
-mobs:add_mob(pos, {
-		name = minetest.get_current_modname()..":guard",
-		child = true,
-		--owner = "singleplayer",
-		--nametag = "Bessy",
-		--ignore_count = true -- ignores mob count per map area
-})
-
-
-
---[[
--- bots
-aliveai.create_bot({
-	name="guard",
-	team="guards",
-	texture="default_dirt.png",
-	type="monster",
-	talking=0,
-	attack_players=1,
-	attacking=1,
-	building=0,
-	hp=10,
-	name_color="",
-	spawn_on={"default:desert_sandstone"},
-	start_with_items={["bows:arrow"]=99,["bows:bow_bronze"]=1},
-})
---]]
 
