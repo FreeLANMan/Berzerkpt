@@ -28,13 +28,13 @@ round_trunks.trunks_overrider(minetest.get_current_modname()..":earthbuild_white
 
 minetest.register_on_respawnplayer(function(player) 
 	local name = player:get_player_name()
-    minetest.get_player_by_name(name):setpos({x=24.0,y=0.5,z=6.0}) --casa
+    minetest.get_player_by_name(name):set_pos({x=24.0,y=0.5,z=6.0}) --casa
     score = 0
 end)
 
 minetest.register_on_dieplayer(function(player) 
 	local name = player:get_player_name()
-    minetest.get_player_by_name(name):setpos({x=24.0,y=0.5,z=6.0}) --casa
+    minetest.get_player_by_name(name):set_pos({x=24.0,y=0.5,z=6.0}) --casa
     minetest.get_player_by_name(name):move_to({x=24.0,y=0.5,z=6.0})
     score = 0
 end)
@@ -102,7 +102,7 @@ minetest.register_on_joinplayer(function(player)
 
     minetest.place_schematic({x=0,y=0,z=0}, minetest.get_modpath("schems").."/templeb.mts", 0, true, true)
 
-    minetest.get_player_by_name(name):setpos({x=24.0,y=0.5,z=6.0}) --casa
+    minetest.get_player_by_name(name):set_pos({x=24.0,y=0.5,z=6.0}) --casa
 end)
 
 
@@ -115,7 +115,7 @@ function(dtime)
 
         -- caiu no infinito 
         if pos.y <= -1.0 then
-            minetest.get_player_by_name(player_name):setpos({x=24.0,y=0.5,z=6.0})
+            minetest.get_player_by_name(player_name):set_pos({x=24.0,y=0.5,z=6.0})
         end
 
         -- ordem de preferencia: casa, templo, casa chique, tumba
@@ -126,11 +126,11 @@ function(dtime)
             moved = 1
             local mapa = math.random(3)
             if mapa == 1 then
-                minetest.get_player_by_name(player_name):setpos({x=37.0,y=0.5,z=6.0}) --tumba
+                minetest.get_player_by_name(player_name):set_pos({x=37.0,y=0.5,z=6.0}) --tumba
             elseif mapa == 2 then --casa chique
-                minetest.get_player_by_name(player_name):setpos({x=41.0,y=0.5,z=6.0})
+                minetest.get_player_by_name(player_name):set_pos({x=41.0,y=0.5,z=6.0})
             else 
-                minetest.get_player_by_name(player_name):setpos({x=2.0,y=0.5,z=6.0}) --templo
+                minetest.get_player_by_name(player_name):set_pos({x=2.0,y=0.5,z=6.0}) --templo
             end   
         end 
         -- saída do templo
@@ -138,11 +138,11 @@ function(dtime)
             moved = 1
             local mapa = math.random(3)
             if mapa == 1 then 
-                minetest.get_player_by_name(player_name):setpos({x=37.0,y=0.5,z=6.0}) --tumba
+                minetest.get_player_by_name(player_name):set_pos({x=37.0,y=0.5,z=6.0}) --tumba
             elseif mapa == 2 then --casa chique
-                minetest.get_player_by_name(player_name):setpos({x=41.0,y=0.5,z=6.0})
+                minetest.get_player_by_name(player_name):set_pos({x=41.0,y=0.5,z=6.0})
             else 
-                minetest.get_player_by_name(player_name):setpos({x=24.0,y=0.5,z=6.0}) --casa
+                minetest.get_player_by_name(player_name):set_pos({x=24.0,y=0.5,z=6.0}) --casa
             end  
         end
         -- saída da casa chique
@@ -150,12 +150,12 @@ function(dtime)
             moved = 1
             local mapa = math.random(3)
             if mapa == 1 then 
-                minetest.get_player_by_name(player_name):setpos({x=37.0,y=0.5,z=6.0}) --tumba
+                minetest.get_player_by_name(player_name):set_pos({x=37.0,y=0.5,z=6.0}) --tumba
             elseif mapa == 2 then --templo
-                minetest.get_player_by_name(player_name):setpos({x=2.0,y=0.5,z=6.0})
+                minetest.get_player_by_name(player_name):set_pos({x=2.0,y=0.5,z=6.0})
                 --mapatual = 2 
             else 
-                minetest.get_player_by_name(player_name):setpos({x=24.0,y=0.5,z=6.0}) --casa
+                minetest.get_player_by_name(player_name):set_pos({x=24.0,y=0.5,z=6.0}) --casa
             end  
         end
         -- saída da tumba
@@ -163,13 +163,13 @@ function(dtime)
             moved = 1
             local mapa = math.random(3)
             if mapa == 1 then 
-                minetest.get_player_by_name(player_name):setpos({x=41.0,y=0.5,z=6.0}) --casa chique
+                minetest.get_player_by_name(player_name):set_pos({x=41.0,y=0.5,z=6.0}) --casa chique
               --  mapatual = 1
             elseif mapa == 2 then --templo
-                minetest.get_player_by_name(player_name):setpos({x=2.0,y=0.5,z=6.0})
+                minetest.get_player_by_name(player_name):set_pos({x=2.0,y=0.5,z=6.0})
                 --mapatual = 2 
             else 
-                minetest.get_player_by_name(player_name):setpos({x=24.0,y=0.5,z=6.0}) --casa
+                minetest.get_player_by_name(player_name):set_pos({x=24.0,y=0.5,z=6.0}) --casa
                 --mapatual = 3
             end  
         end

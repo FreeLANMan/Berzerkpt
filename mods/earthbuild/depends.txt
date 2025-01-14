@@ -1,4 +1,0 @@
-default
-stairs
-walls
-doors
